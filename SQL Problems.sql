@@ -12,5 +12,10 @@ BEGIN
   RETURN (SELECT DISTINCT(salary) FROM Employee ORDER BY salary DESC LIMIT 1 OFFSET N);
 END;
 
+-- 178. Rank Scores
 
-
+SELECT 
+    score,
+    DENSE_RANK() OVER (ORDER BY score DESC) AS 'rank'
+FROM 
+    Scores;
