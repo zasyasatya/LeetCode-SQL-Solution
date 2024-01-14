@@ -13,9 +13,13 @@ BEGIN
 END;
 
 -- 178. Rank Scores
-
 SELECT 
     score,
     DENSE_RANK() OVER (ORDER BY score DESC) AS 'rank'
 FROM 
     Scores;
+
+-- 180. Consecutive Numbers
+SELECT DISTINCT Num AS ConsecutiveNums
+FROM Logs
+WHERE (Id + 1, Num) IN (SELECT * FROM Logs) AND (Id + 2, Num) IN (SELECT * FROM Logs)
