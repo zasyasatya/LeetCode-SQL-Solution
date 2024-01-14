@@ -29,3 +29,6 @@ SELECT name as 'Employee'
 FROM Employee e WHERE 
     e.managerId IS NOT NULL AND
     salary > (SELECT salary FROM Employee WHERE id = e.managerId) 
+
+-- 182. Duplicate Emails
+SELECT email FROM Person GROUP BY email HAVING COUNT(email) > 1
