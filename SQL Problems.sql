@@ -35,3 +35,15 @@ SELECT email FROM Person GROUP BY email HAVING COUNT(email) > 1
 
 -- 183. Customers Who Never Order (Easy)
 SELECT a.name AS 'Customers' FROM Customers a LEFT JOIN Orders b ON a.id = b.customerId WHERE customerId IS NULL
+
+
+-- 184. Department Highest Salary
+SELECT b.name AS Department, a.name AS Employee, a.salary AS Salary
+FROM Employee a 
+INNER JOIN Department b ON a.departmentId = b.id
+WHERE a.salary = (
+    SELECT MAX(salary)
+    FROM Employee e
+    WHERE e.departmentId = a.departmentId
+)
+GROUP BY b.id, a.id;
